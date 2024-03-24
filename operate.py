@@ -2,6 +2,7 @@ import re
 import time
 
 from LoginSession import LoginSession
+from Operation.hard_working import hardWorking
 from Operation.badminton import Badminton
 from Operation.course import Course
 from Operation.CourseSelector import CourseSelector
@@ -68,3 +69,7 @@ class Operator:
     def public_course(self, query: list):
         worker = PublicCourse(self.login_session, query)
         worker.run()
+    def hard_workding(self):
+        worker = hardWorking(self.login_session)
+        worker.run()
+        
