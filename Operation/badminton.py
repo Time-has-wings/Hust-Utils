@@ -50,9 +50,10 @@ class Badminton:
                         break
 
     def run(self) -> str:
-        if self.ecard():
-            return "电子账户余额不足"
-        self.court = json.load(open("src/court.json"))[self.court]
+        # if self.ecard():
+        #     return "电子账户余额不足"
+        with open("src/court.json") as f:
+            self.court = json.load(f)[self.court]
         date = datetime.datetime.strptime(self.date, "%Y-%m-%d")
         yesterday = date - datetime.timedelta(days=1)
         end_time = (datetime.datetime.strptime(self.start_time, "%H:%M:%S") + datetime.timedelta(hours=2)).strftime(
