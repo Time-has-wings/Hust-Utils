@@ -1,12 +1,12 @@
-# Huazhong University of Science and Technology Badminton Court Booking Script
+# 华中科技大学羽毛球场地抢订脚本
+[English Version](README.en.md)
 
-## Project Introduction
-This project is used to automatically book badminton courts at Huazhong University of Science and Technology.
+## 项目简介
+该项目用于自动抢订华中科技大学的羽毛球场地。
 
-## Usage
-1. Install dependencies:
-
-   Linux users(using Ubuntu as an example) can run the following command directly. 
+## 使用步骤
+1. 安装依赖：
+   linux用户(以ubuntu为例)直接运行以下命令，
 
    ```sudo apt update```
 
@@ -14,24 +14,24 @@ This project is used to automatically book badminton courts at Huazhong Universi
 
    ```pip install -r requirements.txt```
 
-   Windows users should follow the [Note](#note) first, then execute the following command:
+   windows用户先按照[附注](#附注)操作，随后执行以下命令
 
    ```pip install -r requirements.txt```
 
-2. Modify the ```info.toml``` configuration file.
-3. Run the script:
+2. 修改```info.toml```配置文件
+3. 执行脚本
 
-   ```python main.py```
+    ```python main.py```
 
-## Note
-1. Click  [Tesseract](https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) to install.
-2. Add the Tesseract path to the environment variables. 
+## 附注
+1. 点击 [Tesseract](https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) 进行安装
+2. 将Tesseract的路径添加到环境变量中
 
-## Principle of filling in court.json (using Guanggu Sports Center, main badminton court as an example)
-1. Open the URL in your browser: https://pecg.hust.edu.cn/cggl/front/syqk?cdbh=45
+## court.json填写原理(以光谷体育场为例,主馆羽毛球场为例)
+1. 浏览器打开网址https://pecg.hust.edu.cn/cggl/front/syqk?cdbh=45
 
-2. `cdbh` refers to the field mentioned in the link above (`cdbh`: chang di bian hao, which means "court number" in Chinese).
+2. `cdbh`即上述链接中所提(`cdbh:chang di bian hao`)(可恶的英文不好的中文开发者)
 
-3. Right-click and select "View Page Source".
+3. 右键-查看页面源代码
 
-4. Press `ctrl+f` and search for the "pian" field to discover the principle.
+4. `ctrl+f`,搜索`"pian"`字段,即可发现原理
