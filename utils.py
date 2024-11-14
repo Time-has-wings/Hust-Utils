@@ -34,28 +34,28 @@ def loadConfig():
     return info
 
 def recordStore(info):
-    data = {
-        'account':{
-            info['account']['name']: {
-                "ID": info['account']['ID'],
-                "password": info['account']['password']
-            }
-        },
-        'partner':{
-            info['partner']['name']: {
-                "ID": info['partner']['ID'],
-                "password": info['partner']['password']
-            }
-        },
+    account = {
+        info['account']['name']: {
+            "ID": info['account']["ID"],
+            "password": info['account']['password']
+        }
+    }
+
+    partner = {
+        info['partner']['name']: {
+            "ID": info['partner']['ID'],
+            "password": info['partner']['password']
+        }
     }
 
     if os.path.exists('record.json'):
         with open('record.json', 'r', encoding='utf-8') as jsonfile:
             existing_data = json.load(jsonfile)
     else:
-        existing_data = {}
+        existing_data = {'account': {}, 'partner': {}}
 
-    existing_data.update(data)
+    existing_data['account'].update(account)
+    existing_data['partner'].update(partner)
     with open('record.json', 'w', encoding='utf-8') as jsonfile:
         json.dump(existing_data, jsonfile, ensure_ascii=False, indent=4)  
 

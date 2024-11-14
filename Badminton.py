@@ -40,7 +40,7 @@ class Badminton:
         params = [
             ("starttime", self.start_time),  # 开始时间
             ("endtime", self.end_time),  # 结束时间
-            ("partnerCardType", "1"),  # 第一个类型:学生
+            ("partnerCardType", self.partner['card_type']),  # 第一个类型:学生
             ("partnerName", self.partner["name"]),  # 同伴姓名
             ("partnerSchoolNo", self.partner["ID"]),  # 同伴学号
             ("partnerPwd", self.partner["password"]),  # 同伴密码
