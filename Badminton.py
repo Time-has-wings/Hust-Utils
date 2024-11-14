@@ -4,6 +4,7 @@ import re
 import time
 from bs4 import BeautifulSoup
 from LoginSession import LoginSession
+from utils import logger
 
 class Badminton:
     def __init__(self, session:LoginSession, date:str, start_time:str, court:dict, partner:dict):
@@ -49,14 +50,32 @@ class Badminton:
             ("cg_csrf_token", self.cg_csrf_token),
         ]
 
-
         # 等待预约时间为前两天的8点
         wait = str(datetime.datetime.strptime(self.date + " 08", "%Y-%m-%d %H") - datetime.timedelta(days=2))
         wait = time.mktime(time.strptime(wait, "%Y-%m-%d %H:%M:%S"))
+        previous_minutes_left = None
         while time.time() - wait < 0:
+            current_time = time.time()
+            time_left = wait - current_time
+            minutes_left = int(time_left // 60)
+            
+            if minutes_left != previous_minutes_left:
+                hours_left = int(time_left // 3600)
+                minutes_left = int((time_left % 3600) // 60)
+                seconds_left = int(time_left % 60)
+                
+                if time_left > 5 * 60:
+                    if previous_minutes_left is None or previous_minutes_left - minutes_left >= 10:
+                        logger.info(f"还需等待: {hours_left}h {minutes_left}min {seconds_left}s")
+                        previous_minutes_left = minutes_left
+                else:
+                    logger.info(f"还需等待: {hours_left}h {minutes_left}min {seconds_left}s")
+                    previous_minutes_left = minutes_left
+            
             time.sleep(1)
 
         # 预约
+        logger.info("开始预约")
         text = self.session.post("http://pecg.hust.edu.cn/cggl/front/step2", params=params).text
         try:
             data = re.search('name="data" value="(.*)" type', text).group(1)
