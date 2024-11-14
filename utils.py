@@ -8,6 +8,10 @@ from Crypto.PublicKey import RSA
 
 import toml
 import logging
+import csv
+import datetime
+import json
+import os
 
 def launchLogging():
     logger = logging.getLogger("All for Badminton!")
@@ -26,8 +30,51 @@ def loadConfig():
     logger.info(f"""\n
                 时间: {info['time']['date']} {info['time']['start_time']}点\n
                 地点: {info['court']['name']} {info['court']['number']}号场地\n
-                人员: {info['account']['ID']} {info['partner']['ID']}""")
+                人员: {info['account']['name']} {info['partner']['name']}""")
     return info
+
+def recordStore(info):
+    data = {
+        info['account']['name']: {
+            "ID": info['account']['ID'],
+            "password": info['account']['password']
+        },
+        info['partner']['name']: {
+            "ID": info['partner']['ID'],
+            "password": info['partner']['password']
+        }
+    }
+
+    if os.path.exists('record.json'):
+        with open('record.json', 'r', encoding='utf-8') as jsonfile:
+            existing_data = json.load(jsonfile)
+    else:
+        existing_data = {}
+
+    existing_data.update(data)
+    with open('record.json', 'w', encoding='utf-8') as jsonfile:
+        json.dump(existing_data, jsonfile, ensure_ascii=False, indent=4)  
+
+    with open('record.csv', 'a', newline='', encoding='utf-8') as csvfile:
+        fieldnames = ['execution_time', 'date', 'start_time', 'court_name', 'court_number', 'account_ID', 'account_name', 'partner_ID', 'partner_name']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        if csvfile.tell() == 0:
+            writer.writeheader()
+
+        writer.writerow({
+            'execution_time': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'date': info['time']['date'],
+            'start_time': info['time']['start_time'],
+            'court_name': info['court']['name'],
+            'court_number': info['court']['number'],
+            'account_ID': info['account']['ID'],
+            'account_name': info['account']['name'],
+            'partner_ID': info['partner']['ID'],
+            'partner_name': info['partner']['name'],
+        })
+    
+    logger.info("record stored")
 
 def deCaptcha(imageContent: bytes):
     # 打开图像文件

@@ -1,9 +1,10 @@
-from utils import loadConfig, logger
+from utils import loadConfig, logger, recordStore
 from LoginSession import LoginSession
 from Badminton import Badminton
 
 if __name__ == "__main__":
     info = loadConfig()
+    recordStore(info)
     session = LoginSession(userId=info["account"]["ID"], 
                            password=info["account"]["password"])
     badminton = Badminton(session=session, 
