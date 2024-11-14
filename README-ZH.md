@@ -14,5 +14,5 @@
     ```python main.py```
 
 ## 附注
-1. 点击 [Tesserac](thttps://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) 进行安装
+1. 点击 [Tesseract](thttps://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) 进行安装
 2. 将Tesseract的路径添加到环境变量中
