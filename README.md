@@ -16,5 +16,5 @@ This project is used to automatically book badminton courts at Huazhong Universi
    ```python main.py```
 
 ## Note
-1. Click  [Tesseract](thttps://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) to install.
+1. Click  [Tesseract](https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) to install.
 2. Add the Tesseract path to the environment variables. 
