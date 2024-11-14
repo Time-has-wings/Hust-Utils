@@ -35,14 +35,18 @@ def loadConfig():
 
 def recordStore(info):
     data = {
-        info['account']['name']: {
-            "ID": info['account']['ID'],
-            "password": info['account']['password']
+        'account':{
+            info['account']['name']: {
+                "ID": info['account']['ID'],
+                "password": info['account']['password']
+            }
         },
-        info['partner']['name']: {
-            "ID": info['partner']['ID'],
-            "password": info['partner']['password']
-        }
+        'partner':{
+            info['partner']['name']: {
+                "ID": info['partner']['ID'],
+                "password": info['partner']['password']
+            }
+        },
     }
 
     if os.path.exists('record.json'):
