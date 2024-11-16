@@ -1,5 +1,4 @@
 # 华中科技大学羽毛球场地锁定5min脚本
-[English Version](README.en.md)
 
 ## 项目简介
 该项目用于自动锁定华中科技大学的羽毛球指定场地5min。
@@ -23,7 +22,9 @@
 3. 执行脚本
 
     ```python main.py```
-4. 手动登录网址进行该场地的该时间段的操纵
+    
+    锁定该时间段的该场地5min
+4. 手动登录网址,进行该场地的该时间段的操作.(执行完Step3后可以发现,本账户下该时间段的该场地处于"可预约"状态,其他账户下该时间段的该场地处于"预约中"状态)
 
 ## 附注
 1. 点击 [Tesseract](https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) 进行安装
