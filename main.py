@@ -12,11 +12,13 @@ if __name__ == "__main__":
                           start_time=info["time"]["start_time"], 
                           court=info["court"], 
                           partner=info["partner"])
-    ecard = badminton.ecard()
-    if ecard == False:
-        logger.info("您的电子账户余额充足，即将进行场所锁定")
-        result = badminton.run()
-        logger.info(result)
-    else:
-        logger.info("您的电子账户余额不足，程序即将退出")
-        exit(0)
+    result = badminton.run()
+    logger.info(result)
+    # ecard = badminton.ecard()
+    # if ecard == False:
+    #     logger.info("您的电子账户余额充足，即将进行场所锁定")
+    #     result = badminton.run()
+    #     logger.info(result)
+    # else:
+    #     logger.info("您的电子账户余额不足，程序即将退出")
+    #     exit(0)
