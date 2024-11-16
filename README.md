@@ -30,7 +30,7 @@
 1. 点击 [Tesseract](https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) 进行安装
 2. 将Tesseract的路径添加到环境变量中
 
-## court.json填写原理(以光谷体育场-主馆羽毛球场为例)
+## court.json原理(以光谷体育场-主馆羽毛球场为例)
 1. 浏览器打开网址https://pecg.hust.edu.cn/cggl/front/syqk?cdbh=45
 
 2. `cdbh`即上述链接中所提(`cdbh:chang di bian hao`)(可恶的英文不好的中文开发者)
@@ -38,3 +38,5 @@
 3. 右键-查看页面源代码
 
 4. `ctrl+f`,搜索`"pian"`字段,即可发现原理
+
+5. 得知原理后可去自动完成其他场馆的所需值
