@@ -24,13 +24,10 @@ class Badminton:
         res = self.session.get(url)
         soup = BeautifulSoup(res.text, features="html.parser")
         bills = float(soup.section.find_all("dl")[9].dd.div.span.string.strip("元"))
-        return bills < 40 if self.start_time >= "18:00:00" else bills < 20
+        logger.info(f"您当前电子账户余额: {bills}元, 预约需支付{36 if self.start_time >= '18:00:00' else 20}元")
+        return bills < 36 if self.start_time >= "18:00:00" else bills < 20
     
     def run(self) -> str:
-        # 检查电子账户余额
-        if self.ecard():
-            return "电子账户余额不足"
-        
         # 配置Referer && 获取csrf_token(看不懂的东西)
         self.session.headers["Referer"] = str(self.session.get("http://pecg.hust.edu.cn/cggl/index1").url)
         text = self.session.get("http://pecg.hust.edu.cn/cggl/index1").text
@@ -74,19 +71,24 @@ class Badminton:
             
             time.sleep(1)
 
-        # 预约
-        logger.info("开始预约")
+        # 场地锁定
+        logger.info("即将锁定场地")
         text = self.session.post("http://pecg.hust.edu.cn/cggl/front/step2", params=params).text
-        try:
-            data = re.search('name="data" value="(.*)" type', text).group(1)
-            Id = re.search('name="id" value="(.*)" type', text).group(1)
-            params = [
-                ("data", data),
-                ("id", Id),
-                ("cg_csrf_token", self.cg_csrf_token),
-                ("select_pay_type", -1),
-            ]
-            text = self.session.post("http://pecg.hust.edu.cn/cggl/front/step3", params=params).text
-        except AttributeError:
-            return re.search(r"alert\(HTMLDecode\('(.*)'\), '提示信息'\);", text).group(1)
-        return re.search(r"alert\(HTMLDecode\('(.*)'\), '提示信息'\);", text).group(1)
+        logger.info("场地锁定成功")
+        logger.info("本账户已锁定该场所5分钟,请在5分钟内手动登录网址操纵该场所完成预约")
+        return "程序即将退出"
+
+        # # 进入支付界面
+        # try:
+        #     data = re.search('name="data" value="(.*)" type', text).group(1)
+        #     Id = re.search('name="id" value="(.*)" type', text).group(1)
+        #     params = [
+        #         ("data", data),
+        #         ("id", Id),
+        #         ("cg_csrf_token", self.cg_csrf_token),
+        #         ("select_pay_type", -1),
+        #     ]
+        #     text = self.session.post("http://pecg.hust.edu.cn/cggl/front/step3", params=params).text
+        # except AttributeError:
+        #     return re.search(r"alert\(HTMLDecode\('(.*)'\), '提示信息'\);", text).group(1)
+        # return re.search(r"alert\(HTMLDecode\('(.*)'\), '提示信息'\);", text).group(1)

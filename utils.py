@@ -27,6 +27,7 @@ logger = launchLogging()
 
 def loadConfig():
     info = toml.load(open('info.toml', 'r', encoding='utf-8'))
+    logger.info("配置文件加载成功")
     logger.info(f"""\n
                 时间: {info['time']['date']} {info['time']['start_time']}点\n
                 地点: {info['court']['name']} {info['court']['number']}号场地\n
@@ -78,7 +79,7 @@ def recordStore(info):
             'partner_name': info['partner']['name'],
         })
     
-    logger.info("record stored")
+    logger.info("信息存储成功")
 
 def deCaptcha(imageContent: bytes):
     # 打开图像文件

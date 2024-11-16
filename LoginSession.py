@@ -51,7 +51,7 @@ class LoginSession(httpx.Client):
                 "https://pass.hust.edu.cn/cas/login?service=http://one.hust.edu.cn/dcp/index.jsp",
                 data=post_params,
             )
-            logger.info("Login Success!")
+            logger.info("登录成功")
         except Exception as e:
             print(e)
             time.sleep(5)

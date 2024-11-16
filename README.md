@@ -1,8 +1,8 @@
-# 华中科技大学羽毛球场地抢订脚本
+# 华中科技大学羽毛球场地锁定5min脚本
 [English Version](README.en.md)
 
 ## 项目简介
-该项目用于自动抢订华中科技大学的羽毛球场地。
+该项目用于自动锁定华中科技大学的羽毛球指定场地5min。
 
 ## 使用步骤
 1. 安装依赖：
@@ -23,6 +23,7 @@
 3. 执行脚本
 
     ```python main.py```
+4. 手动登录网址进行该场地的该时间段的操纵
 
 ## 附注
 1. 点击 [Tesseract](https://github.com/tesseract-ocr/tesseract/releases/download/5.5.0/tesseract-ocr-w64-setup-5.5.0.20241111.exe) 进行安装
